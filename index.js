@@ -85,3 +85,11 @@ inquirer
         message: 'Questions',
     },
 ])
+
+.then((answers) => {
+    const filename = generateMarkdown(answers);
+
+    fs.writeFile('README.md', filename, (err) =>
+      err ? console.log(err) : console.log('File Written!')
+    );
+  });
