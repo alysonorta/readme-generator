@@ -1,31 +1,47 @@
 const inquirer = require('inquirer');
 const fs = require ('fs');
 
-const questions = [
-    "What is the title of the project?",
-    "Project description: ",
-    "Installation instructions: ",
-    "Usage information: ",
-    "Contribution guidelines: ",
-    "Testing instructions: "
-]
+const generateMarkdown = (answers) =>
+`# <Your-Project-Title>
+${answers.title}
+## Description
+${answers.description}
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+## Installation
+${answers.installation}
+## Usage
+${answers.usage}
+## Credits
+${answers.credits}
+## License
+${answers.license}
+## Badges
+![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+## Features
+${answers.features}
+## How to Contribute
+${answers.contribution}
+## Tests
+${answers.tests}
+## Questions
+${answers.questions}
+`
 
 inquirer
 .prompt ([
     {
         type: 'input',
-        name: 'project title',
+        name: 'title',
         message: 'Project Title',
     },
     {
         type: 'input',
         name: 'description',
         message: 'Description',
-    },
-    {
-        type: 'input',
-        name: 'table',
-        message: 'Table of Contents',
     },
     {
         type: 'input',
@@ -43,9 +59,15 @@ inquirer
         message: 'Credits',
     },
     {
-        type: 'input',
+        type: 'list',
+        choices: ["First Choice", "Second Choice", "Third Choice"],
         name: 'License',
         message: 'License',
+    },
+    {
+        type: 'input',
+        name: 'features',
+        message: 'Features',
     },
     {
         type: 'input',
